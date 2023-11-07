@@ -1,0 +1,14 @@
+.inputContact {
+  display: block;
+
+  width: 250px;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  padding: 7px;
+
+  margin: 0 auto;
+
+  border: 1px solid #000000;
+  border-radius: 4px;
+  background-color: #c1cdc1;
+}

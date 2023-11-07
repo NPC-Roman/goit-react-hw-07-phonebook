@@ -1,16 +1,28 @@
-export const App = () => {
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+import Contacts from './Contacts/Contacts';
+import Filter from './Filter/Filter';
+import Form from './Form';
+
+const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <h1
+        style={{
+          marginTop: '25px',
+          textAlign: 'center',
+          color: 'rgb(145, 122, 122)',
+        }}
+      >
+        Phonebook
+      </h1>
+      <Form />
+      <Filter />
+      <Contacts />
+      <ToastContainer />
+    </>
   );
 };
+
+export default App;
