@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/contactSlice';
+import { getContacts } from 'redux/selectors';
 import { toast } from 'react-toastify';
 import shortid from 'shortid';
 import css from './Form.module.css';
@@ -9,7 +9,7 @@ import css from './Form.module.css';
 export const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(getContacts);
   const nameFormId = shortid.generate();
   const numberFormId = shortid.generate();
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export const Form = () => {
 
     dispatch(
       addContact({
-        // id: shortid.generate(),
+        id: shortid.generate(),
         name,
         number,
       })

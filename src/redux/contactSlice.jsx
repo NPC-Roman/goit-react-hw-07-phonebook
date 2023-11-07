@@ -1,28 +1,53 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const contactSlice = createSlice({
+import { addContact, fetchContacts, deleteContact } from './operations';
+
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+export const contactSlice = createSlice({
   name: 'contacts',
   initialState: {
-    contacts: [
-      { id: 'id-1', name: 'Homer Simpson', number: '777-77-57' },
-      { id: 'id-2', name: 'Hermione Kleane', number: '777-77-17' },
-      { id: 'id-3', name: 'Harry Potter', number: '777-17-79' },
-      { id: 'id-4', name: 'Johnny Silverhand', number: '777-97-76' },
-    ],
+    items: [],
+    isLoading: false,
+    error: null,
   },
-  reducers: {
-    addContact: (state, action) => {
-      state.contacts.push(action.payload);
+
+  extraReducers: {
+    [fetchContacts.pending]: handlePending,
+    [addContact.pending]: handlePending,
+    [deleteContact.pending]: handlePending,
+
+    [fetchContacts.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = action.payload;
     },
 
-    removeContact: (state, action) => {
-      state.contacts = state.contacts.filter(
-        contact => contact.id !== action.payload
+    [addContact.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items.push(action.payload);
+    },
+
+    [deleteContact.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = state.items.filter(
+        contact => contact.id !== action.payload.id
       );
     },
+
+    [fetchContacts.rejected]: handleRejected,
+    [addContact.rejected]: handleRejected,
+    [deleteContact.rejected]: handleRejected,
   },
 });
 
-export const { addContact, removeContact } = contactSlice.actions;
-
-export const contactReducer = contactSlice.reducer;
+// export const contactReducer = contactSlice.reducer;

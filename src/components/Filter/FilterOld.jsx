@@ -1,12 +1,12 @@
 import css from './Filter.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilter, selectContacts } from 'redux/selectors';
+import { getFilter, getContacts } from 'redux/selectors';
 import { setContactsFilter } from 'redux/filterSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(selectFilter);
-  const arrayContacts = useSelector(selectContacts);
+  const filter = useSelector(getFilter);
+  const arrayContacts = useSelector(getContacts);
   return (
     <>
       {arrayContacts.length !== 0 && (
