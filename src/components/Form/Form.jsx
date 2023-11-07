@@ -45,7 +45,7 @@ export const Form = () => {
 
     dispatch(
       addContact({
-        // id: shortid.generate(),
+
         name,
         number,
       })

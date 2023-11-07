@@ -49,5 +49,3 @@ export const contactSlice = createSlice({
     [deleteContact.rejected]: handleRejected,
   },
 });
-
-// export const contactReducer = contactSlice.reducer;
