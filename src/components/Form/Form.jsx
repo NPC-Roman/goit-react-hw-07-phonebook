@@ -4,6 +4,7 @@ import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
 import { toast } from 'react-toastify';
 import shortid from 'shortid';
+
 import css from './Form.module.css';
 
 export const Form = () => {
@@ -45,7 +46,6 @@ export const Form = () => {
 
     dispatch(
       addContact({
-
         name,
         number,
       })
